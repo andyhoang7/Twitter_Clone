@@ -24,20 +24,22 @@ K P H T
 * [x] The user should be able to delete a tweet.
 * [x]/ Add favicon to the page
 
-<!--  -->
+<!-- Ms. Phuong -->
 * [] The user should see a "count" that displays how many more characters the user has remaining, counting down from 140.
 * [] Upon tweeting, the characters remaining text should reset back to 140, and the field should be cleared.
 * [] The application should disallow text of greater than 140 characters.
 
-<!--  -->
+<!-- Mr. Thien -->
 * [] The user should be able to "Like". When "Like" is clicked, the text should change to "Unlike". When "Unlike" is clicked, the text should change to "Like". Alternatively, use a heart icon (colored or not colored).
 * [] When a "Liked" tweet is retweeted, the new tweet should not be liked.
 
-<!--  -->
-* [] Each tweet has an optional hashtag. The hashtag should be linked with an anchor tag.
-* []/ The user can click on a hashtag, and only other tweets with that hashtag are shown.
+<!-- Mr. Hang -->
+* [] sign up/sign in/ sign out options
+* [] Static About Us Web Page
+<!-- * [] Each tweet has an optional hashtag. The hashtag should be linked with an anchor tag.
+* []/ The user can click on a hashtag, and only other tweets with that hashtag are shown. -->
 
-<!--  -->
+<!-- Mr. Khuong -->
 * [] The user should be able to "Retweet". Clicking Retweet immediately inserts a copy of that tweet below the original tweet.
 * []/ When the user deletes a tweet, all retweets should be deleted.
 
