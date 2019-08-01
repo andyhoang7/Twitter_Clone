@@ -121,7 +121,8 @@ function createtweetHtml(el, idx) {
 <div class="job-status-bar">
   <ul class="like-com">
     <li>
-      <a href="#"><i class="la la-heart"></i> Like</a>
+      <a href="#"><i onclick="myFunction(this)" class="fa fa-heart"></i>
+      </a>
       <img src="images/liked-img.png" alt="">
       <span>${el.likeCount}</span>
     </li> 
@@ -135,6 +136,16 @@ function createtweetHtml(el, idx) {
 </div> `;
 }
 
+function myFunction(x) {
+  x.classList.toggle("fa-heart-o");
+  // var z = document.getElementById("likeToggle");
+  // if (z.innerHTML === "Like") {
+  //   zx.innerHTML = "Unlike";
+  // } else {
+  //   z.innerHTML = "Like";
+  }
+
+
 
 
 function renderComments(retweets) {
@@ -143,4 +154,4 @@ function renderComments(retweets) {
   }).join('')
 
 }
-// renderTweets(tweets);
+renderTweets(tweets);
