@@ -38,7 +38,7 @@ K P H T
 
 <!-- Mr. Hang -->
 
-- [] sign up/sign in/ sign out options
+- [x] sign up/sign in/ sign out options
 - [] Static About Us Web Page
   <!-- * [] Each tweet has an optional hashtag. The hashtag should be linked with an anchor tag.
 - []/ The user can click on a hashtag, and only other tweets with that hashtag are shown. -->
