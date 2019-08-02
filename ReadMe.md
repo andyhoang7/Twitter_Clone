@@ -27,10 +27,9 @@ K P H T
 - [x]/ Add favicon to the page
 
 <!-- Ms. Phuong -->
-
-- [] The user should see a "count" that displays how many more characters the user has remaining, counting down from 140.
-- [] Upon tweeting, the characters remaining text should reset back to 140, and the field should be cleared.
-- [] The application should disallow text of greater than 140 characters.
+* [x] The user should see a "count" that displays how many more characters the user has remaining, counting down from 140.
+* [x] Upon tweeting, the characters remaining text should reset back to 140, and the field should be cleared.
+* [x] The application should disallow text of greater than 140 characters.
 
 <!-- Mr. Thien -->
 
