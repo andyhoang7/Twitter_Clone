@@ -1,3 +1,5 @@
+
+
 console.log("Twitter-Clone");
 
 document.getElementById("userInput").focus();
@@ -36,6 +38,7 @@ input.addEventListener("keyup", function(event) {
 let tweets = JSON.parse(localStorage.getItem("tweets")) || [];
 // console.log("line37", tweets);
 let currentUser = "CoderSchool";
+let isLogin = false;
 
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);

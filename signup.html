@@ -4,7 +4,7 @@
 <!-- Mirrored from gambolthemes.net/workwise_demo/HTML/profile-account-setting.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Aug 2019 04:35:27 GMT -->
 <head>
 <meta charset="UTF-8">
-<title>Login To El-Captain-Twitter</title>
+<title>Sign-up To El-Captain-Twitter</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -235,26 +235,32 @@
 		<section class="container1">
 				<div>
 						<div>
-						 <h1>Login To El-Captain-Twitter</h1>
+						 <h1>Sign-up To El-Captain-Twitter</h1>
                          </div><br>
                          
 						<div class="login-form">
 						 <ul>
-						 <li id="li01">Username: <input id="loginUser" class="username" type="text" name="username">
-						 </li>
+                         <li id="li01">Email: <input id="signUpEmailInput" class="Email" type="text" name="email">
+                         </li><br>
+						 <li id="li01">Username: <input id="signUpusInput" class="username" type="text" name="username">
+						 </li><br>
 						
-						 <li id="li01">Password: <input id="loginPass" class="password" type="password" name="password">
+						 <li id="li01">Password: <input id="signUppwInput" class="password" type="password" name="password">
                          </li>
+                         <input type="checkbox" onClick="showPassword()" style="font-size: 20px">Show Password
+                         <li id="li01">Re-Password: <input id="ip002" class="password" type="password" name="password">
+                         </li>
+                         <input type="checkbox" onClick="showRePassword()" style="font-size: 20px">Show Re-Password
                          </ul><br>
-                         <input type="checkbox" onClick="showPassword()" style="font-size: 20px">Show Password<br></br>
 						
-						<input  type="button" class="submit" value="Log In" name="submit" id="ip02" onClick="validate()">
-						</div>
+						<input  type="button" class="submit" value="Sign-Up" name="submit" id="ip02" onClick="signup()">
                         </div>
                         
-                        <ul>
-                            <p id="textjsss"></p>
-                        </ul>
+                        <!-- <li>Email<input type="text" id="signUpEmailInput"></li>
+                        <li>Username<input type="text" id="signUpusInput"></li>
+                        <li>Password<input type="text" id="signUppwInput"></li>
+                        <button onClick="signup()">Sign-Up</button> -->
+						</div>
 			
 		</section>
 
@@ -290,7 +296,7 @@
 <script type="text/javascript" src="lib/slick/slick.min.js"></script>
 <script type="text/javascript" src="js/scripts.js"></script>
 <script type="text/javascript" src="js/jslogin.js"></script>
-
+<!-- <script type="text/javascript" src="js/signup.js"></script> -->
 
 </body>
 
