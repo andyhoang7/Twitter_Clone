@@ -57,6 +57,9 @@ The following **optional** features are implemented:
 
 - [] Any tweet with an image URL will have the image automatically expanded in the tweet.
 
+hover over input box, padding left (1em)
+button add twitterClick, opacity
+
 The following **additional** features are implemented:
 
 - [] List anything else that you can get done to improve the page!
