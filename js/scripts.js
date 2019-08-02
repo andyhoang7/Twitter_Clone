@@ -143,4 +143,10 @@ function renderComments(retweets) {
   }).join('')
 
 }
-// renderTweets(tweets);
+renderTweets(tweets);
+
+//count character
+document.getElementById('userInput').onkeyup = function () {
+  document.getElementById('count').innerHTML = "Characters left: " + (140 - this.value.length);
+};
+
