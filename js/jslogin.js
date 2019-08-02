@@ -25,11 +25,11 @@ var passwordArray = ["01234", "43210", "56789", "98765"];
 function validate() {
       var usernameArray = ["Mors", "Phuong", "Khuong", "Thien"];
       var passwordArray = ["01234", "43210", "56789", "98765"];
-    //   var un = document.getElementById("ip01").value;
-    //   var pw = document.getElementById("ip001").value;
+      var un = document.getElementById("ip01").value;
+      var pw = document.getElementById("ip001").value;
   var valid = false;
   for (var i = 0; i < usernameArray.length; i++) {
-    if (usr == usernameArray[i] && pwd == passwordArray[i]) {
+    if (un == usernameArray[i] && pw == passwordArray[i]) {
       valid = true;
       break;
     }
