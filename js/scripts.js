@@ -96,10 +96,11 @@ function addRetweet(idx) {
   newTweet.body = createRetweetbodyHtml(tweets[idx]);
   newTweet.isRetweet = true;
   newTweet.originalTweetId = tweets[idx].tweetId;
-  tweets.unshift(newTweet);
+  // tweets.unshift(newTweet);
+  tweets.splice(idx + 1, 0, newTweet);
   console.log("newTweet from AddRetwee 80", newTweet);
   renderTweets(tweets);
-  document.getElementById("userInput").focus();
+  // document.getElementById("userInput").focus();
   document.getElementById("userInput").value = "";
   storeTweetsToLocalStorage(tweets);
 }
@@ -117,6 +118,7 @@ function removeTweet(idx) {
   console.log("user delete tweets number", idx);
   let originalTweetId = tweets[idx].tweetId;
   console.log(`originalTweetId ${originalTweetId}`);
+  removeRetweetWhenOriginalTweetDeleted(originalTweetId);
   tweets.splice(idx, 1);
   removeRetweetWhenOriginalTweetDeleted(originalTweetId);
   renderTweets(tweets);
@@ -198,8 +200,7 @@ function myFunction(x) {
   //   zx.innerHTML = "Unlike";
   // } else {
   //   z.innerHTML = "Like";
-  }
-
+}
 
 function retweetClick(idx) {
   console.log(`line-147 Tweet[idx]]: ${idx}`);
@@ -314,7 +315,7 @@ function retweetAtweetHtmlTemplate(el, idx) {
 renderTweets(tweets);
 
 //count character
-document.getElementById('userInput').onkeyup = function () {
-  document.getElementById('count').innerHTML = "Characters left: " + (140 - this.value.length);
+document.getElementById("userInput").onkeyup = function() {
+  document.getElementById("count").innerHTML =
+    "Characters left: " + (140 - this.value.length);
 };
-
