@@ -3,8 +3,8 @@ var count = 5;
 
 // SIGN-UP-Start-->>
 let users = JSON.parse(localStorage.getItem("users")) || [];
+let userslogin = JSON.parse(localStorage.getItem("userslogin")) || [];
 console.log("USERS",users);
-
 
 function createuserObject() {
     return {
@@ -14,12 +14,6 @@ function createuserObject() {
         userPassword: document.getElementById("signUppwInput").value
     }
 }
-
-function storeUserToStorage(user) {
-  localStorage.setItem("users",JSON.stringify(user))
-}
-
-
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -48,63 +42,50 @@ function signup() {
 }
 
 
-// <--- SIGN-UP-End
-
-
-// LOG-IN-Start-->>
-
 let userslogin = JSON.parse(localStorage.getItem("userslogin")) || [];
 
+function storeUserToStorage(user) {
+  localStorage.setItem("users",JSON.stringify(user))
+}
 
-function storeUserLogin(usersLogin) {
-  localStorage.setItem("userslogin",JSON.stringify(usersLogin))
+
+function storeUserLogin(userLogin) {
+  localStorage.setItem("userslogin",JSON.stringify(userLogin))
 }
 
 function createLoginObject() {
   return {
       userName: document.getElementById("loginUser").value,
-      // userEmail: document.getElementById("loginUser").value,
+      userEmail: document.getElementById("loginUser").value,
       userPassword: document.getElementById("loginPass").value
   }
 }
 
+// <--- SIGN-UP-End
 
 function check() {
-  userslogin.push(createLoginObject())
-    console.log("Hello Login",userslogin)
-    document.getElementById("loginUser").value = "",
-    document.getElementById("loginPass").value = "";
-    // storeUserLogin(usersLogin)
-
-    var valid = false;
-    let idx = []
-
-    let checkUserLogin = userslogin.map(userLogin[idx]);
-    let checkUserDone = users.map(user[idx]);
-  
-    if (checkUserLogin == checkUserDone) {
-      valid = true;
-    }
-  
-  
-
-  // <--- SIGN-UP-End
+  console.log("Thanks for login",userslogin)
+}
+check()
 
 
-  // function validate() {
-  //       var usernameArray = ["Mors", "Phuong", "Khuong", "Thien"];
-  //       var passwordArray = ["01234", "43210", "56789", "98765"];
-      
-  // console.log('userClickLogin')
-  //       var un = document.getElementById("loginUser").value;
-  //       var pw = document.getElementById("loginPass").value;
-  //   var valid = false;
-  //   for (var i = 0; i < usernameArray.length; i++) {
-  //     if (un == usernameArray[i] && pw == passwordArray[i]) {
-  //       valid = true;
-  //       break;
-  //     }
-  //   }
+
+function validate() {
+    //   var usernameArray = ["Mors", "Phuong", "Khuong", "Thien"];
+    //   var passwordArray = ["01234", "43210", "56789", "98765"];
+    // users.map((user,idx) => {
+    //     if (user.userName[idx] 
+    // })
+console.log('userClickLogin')
+      var un = document.getElementById("loginUser").value;
+      var pw = document.getElementById("loginPass").value;
+  var valid = false;
+//   for (var i = 0; i < usernameArray.length; i++) {
+//     if (un == usernameArray[i] && pw == passwordArray[i]) {
+//       valid = true;
+//       break;
+//     }
+//   }
 
 
 
