@@ -1,6 +1,10 @@
 body {
+<<<<<<< HEAD
     background-color: #f2f2f2;
     /* padding: 20px;    */
+=======
+    background-color: #f2f2f2;   
+>>>>>>> 5b40b9a2bc2c14c257c16bfdb549799ca705af16
 }
 
 .login-form {
@@ -8,15 +12,23 @@ body {
     height: 300px;
     background-color: white;
     justify-content: space-around;
+<<<<<<< HEAD
     padding: 50px;
     border-radius: 10px;
+=======
+    padding: 30px;
+>>>>>>> 5b40b9a2bc2c14c257c16bfdb549799ca705af16
     text-align: center;
 }
 
 #li01 {
 	list-style-type: none;
+<<<<<<< HEAD
     text-align: center;
     font-size: 25px;
+=======
+	text-align: center;
+>>>>>>> 5b40b9a2bc2c14c257c16bfdb549799ca705af16
     padding-bottom: 2%;
     color:rgb(255, 85, 0);
 }
@@ -33,9 +45,13 @@ body {
 #ip001 {
     background-color:rgba(255, 85, 0, 0.219);
     border-radius: 10px;
+<<<<<<< HEAD
     /* width: 70px; */
     margin-top: 20px;
     font-size: 30px;
+=======
+    margin-top: 20px;
+>>>>>>> 5b40b9a2bc2c14c257c16bfdb549799ca705af16
     border: none;
 	text-align: left;
 	color:rgb(255, 255, 255)
@@ -55,11 +71,17 @@ body {
     background-color:rgb(255, 85, 0);
 	border-radius: 10px;
     text-align: center;
+<<<<<<< HEAD
     font-size: 25px;
     border: none;
     width: 100px;
     height: 40px;
     
+=======
+    border: none;
+    width: 80px;
+    height: 30px;
+>>>>>>> 5b40b9a2bc2c14c257c16bfdb549799ca705af16
 	color:rgb(255, 255, 255)
 }
 
@@ -74,7 +96,11 @@ h1 {
     display: flex;
     font-family:  sans-serif;
     margin: 20px;
+<<<<<<< HEAD
     padding: 200px;
+=======
+    padding: 20px;
+>>>>>>> 5b40b9a2bc2c14c257c16bfdb549799ca705af16
     widows: 100vh;
     height: 85vh;
     flex-direction: column;
@@ -91,4 +117,8 @@ h1 {
 .password, .username {
 width: 300px;
 height: 30px;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 5b40b9a2bc2c14c257c16bfdb549799ca705af16
