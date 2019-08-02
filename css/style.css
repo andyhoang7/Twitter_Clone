@@ -5342,3 +5342,7 @@ a:hover {
 .widget-feat ul li i.fa-eye {
 	color: #00b540;
 }
+
+.reTweet {
+	opacity: 0.3;
+}
