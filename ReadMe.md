@@ -33,8 +33,8 @@ K P H T
 
 <!-- Mr. Thien -->
 
-- [] The user should be able to "Like". When "Like" is clicked, the text should change to "Unlike". When "Unlike" is clicked, the text should change to "Like". Alternatively, use a heart icon (colored or not colored).
-- [] When a "Liked" tweet is retweeted, the new tweet should not be liked.
+- [x] The user should be able to "Like". When "Like" is clicked, the text should change to "Unlike". When "Unlike" is clicked, the text should change to "Like". Alternatively, use a heart icon (colored or not colored).
+- [x] When a "Liked" tweet is retweeted, the new tweet should not be liked.
 
 <!-- Mr. Hang -->
 
@@ -56,6 +56,9 @@ The following **optional** features are implemented:
 - [] Users can mention other users. Any string that starts with @username will be highlighted in blue.
 
 - [] Any tweet with an image URL will have the image automatically expanded in the tweet.
+
+hover over input box, padding left (1em)
+button add twitterClick, opacity
 
 The following **additional** features are implemented:
 

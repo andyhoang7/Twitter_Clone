@@ -14,7 +14,7 @@ input.addEventListener("keyup", function(event) {
 // const tweets = [
 //   {
 //     body: "This is Thien  post signed in!",
-//     likeCount: 0,
+//     likeCount: 1,
 //    reTweets: [],
 //     createdAt: "2019-08-01T04:02:07.096Z",
 //     userName: "datloiboi@gmail.com"
@@ -61,6 +61,7 @@ function createTwitterObject() {
   return {
     body: document.getElementById("userInput").value,
     likeCount: 0,
+    like: false,
     retweetCount: 0,
     createdAt: new Date(),
     userName: currentUser,
@@ -180,7 +181,7 @@ function createtweetHtml(el, idx) {
 <div class="job-status-bar">
   <ul class="like-com">
     <li>
-      <a href="#"><i onclick="myFunction(this)" class="fa fa-heart"></i>
+      <a href="#" onclick="countLike(${idx})">${el.likeCount > 0 ? "<i class='fa fa-heart' style='color:#e44d3a' > Like</i>" : "<i class='fa fa-heart-o'> Unlike</i>"}</i>
       </a>
       <img src="images/liked-img.png" alt="">
       <span>${el.likeCount}</span>
@@ -194,14 +195,18 @@ function createtweetHtml(el, idx) {
 </div> `;
 }
 
-function myFunction(x) {
-  x.classList.toggle("fa-heart-o");
-  // var z = document.getElementById("likeToggle");
-  // if (z.innerHTML === "Like") {
-  //   zx.innerHTML = "Unlike";
-  // } else {
-  //   z.innerHTML = "Like";
+
+function countLike(idx) {  
+  tweets[idx].like = !tweets[idx].like
+  if (tweets[idx].like === false) {
+    tweets[idx].likeCount = 1;
+    // tweets[idx].like === true
+  } else {
+      tweets[idx].likeCount = 0;
   }
+  // toggleHeart(onclick());
+  renderTweets(tweets);
+}
 
 
 function retweetClick(idx) {
