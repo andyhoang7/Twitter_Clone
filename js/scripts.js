@@ -37,13 +37,19 @@ let tweets = JSON.parse(localStorage.getItem("tweets")) || [];
 // console.log("line37", tweets);
 let currentUser = "CoderSchool";
 
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+}
+
 function makeId(length) {
-  var result = "";
-  var characters =
+  let result = "";
+  const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  var charactersLength = characters.length;
-  for (var i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  let charactersLength = characters.length;
+  for (i = 0; i < length; i++) {
+    result += characters.charAt(getRandomIntInclusive(1, charactersLength));
   }
   return result;
 }
@@ -57,7 +63,7 @@ function createTwitterObject() {
     userName: currentUser,
     isRetweet: false,
     originalTweetId: null,
-    tweetId: makeId(length)
+    tweetId: makeId(6)
   };
 }
 
@@ -76,18 +82,18 @@ function addTweet() {
 }
 
 function createRetweetObject(tweet) {
-  const el = {
+  return {
     body: tweet.body,
     // likeCount: ,
     // retweets: [],
     createdAt: tweet.createdAt,
+    likeCount: tweet.likeCount,
     userName: tweet.userName
   };
-  return createRetweetHtml(el);
 }
 function addRetweet(idx) {
   newTweet = createTwitterObject();
-  newTweet.body = createRetweetObject(tweets[idx]);
+  newTweet.body = createRetweetbodyHtml(tweets[idx]);
   newTweet.isRetweet = true;
   newTweet.originalTweetId = tweets[idx].tweetId;
   tweets.unshift(newTweet);
@@ -101,6 +107,7 @@ function addRetweet(idx) {
 function removeRetweetWhenOriginalTweetDeleted(originalTweetId) {
   tweets.map((el, idx) => {
     if (el.originalTweetId === originalTweetId) {
+      console.log(`tweetID-110-, ${el.tweetId} Idx:${idx}`);
       tweets.splice(idx, 1);
     }
   });
@@ -109,6 +116,7 @@ function removeRetweetWhenOriginalTweetDeleted(originalTweetId) {
 function removeTweet(idx) {
   console.log("user delete tweets number", idx);
   let originalTweetId = tweets[idx].tweetId;
+  console.log(`originalTweetId ${originalTweetId}`);
   tweets.splice(idx, 1);
   removeRetweetWhenOriginalTweetDeleted(originalTweetId);
   renderTweets(tweets);
@@ -189,7 +197,8 @@ function retweetClick(idx) {
   // renderTweets(tweets);
 }
 
-function createRetweetHtml(el) {
+function createRetweetbodyHtml(tweet) {
+  const el = createRetweetObject(tweet);
   return `
 <div class="post-bar">
 <div class="post_topbar">
