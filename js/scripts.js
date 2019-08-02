@@ -178,7 +178,7 @@ function createtweetHtml(el, idx) {
 <div class="job-status-bar">
   <ul class="like-com">
     <li>
-      <a href="#" onclick="countLike(${idx})">${el.likeCount > 0 ? "<i class='fa fa-heart' style="color:#e44d3a" > Like</i>" : "<i class='fa fa-heart-o'> Unlike</i>"}</i>
+      <a href="#" onclick="countLike(${idx})">${el.likeCount > 0 ? "<i class='fa fa-heart' style='color:#e44d3a' > Like</i>" : "<i class='fa fa-heart-o'> Unlike</i>"}</i>
       </a>
       <img src="images/liked-img.png" alt="">
       <span>${el.likeCount}</span>
