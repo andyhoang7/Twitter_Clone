@@ -33,8 +33,8 @@ K P H T
 
 <!-- Mr. Thien -->
 
-- [] The user should be able to "Like". When "Like" is clicked, the text should change to "Unlike". When "Unlike" is clicked, the text should change to "Like". Alternatively, use a heart icon (colored or not colored).
-- [] When a "Liked" tweet is retweeted, the new tweet should not be liked.
+- [x] The user should be able to "Like". When "Like" is clicked, the text should change to "Unlike". When "Unlike" is clicked, the text should change to "Like". Alternatively, use a heart icon (colored or not colored).
+- [x] When a "Liked" tweet is retweeted, the new tweet should not be liked.
 
 <!-- Mr. Hang -->
 
