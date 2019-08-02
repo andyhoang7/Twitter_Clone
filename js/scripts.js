@@ -312,3 +312,9 @@ function retweetAtweetHtmlTemplate(el, idx) {
   `;
 }
 renderTweets(tweets);
+
+//count character
+document.getElementById('userInput').onkeyup = function () {
+  document.getElementById('count').innerHTML = "Characters left: " + (140 - this.value.length);
+};
+
