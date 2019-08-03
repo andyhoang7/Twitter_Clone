@@ -2,6 +2,37 @@ console.log("Twitter-Clone");
 
 document.getElementById("userInput").focus();
 
+// expanding the img automatically
+// check URL
+function validURL(str) {
+  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+  return !!pattern.test(str);
+}
+
+// var input = document.getElementById("userInput");
+// input.addEventListener("keyup", e => {
+//   let words = e.target.value
+//   words = words.split(' ')
+//   words.map(word => {
+//     if (validURL(word)) {
+//       document.getElementById('preview').innerHTML = `<image src="${word}" style="height: 100px; width: 100px"></image>`
+//     } else {
+//       document.getElementById('preview').innerHTML = ''
+//     }
+//   })
+//   e.key === "Enter" && addTodo()
+// });
+//   if (event.keyCode === 13) {
+//     addTweet();
+//   }
+// });
+
+
 var input = document.getElementById("userInput");
 input.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
@@ -55,8 +86,9 @@ function makeId(length) {
 }
 
 function createTwitterObject() {
+  const input = document.getElementById("userInput").value
   return {
-    body: document.getElementById("userInput").value,
+    body: startWithAt(input),
     likeCount: 0,
     retweetCount: 0,
     createdAt: new Date(),
@@ -70,12 +102,28 @@ function createTwitterObject() {
 function storeTweetsToLocalStorage(tweets) {
   localStorage.setItem("tweets", JSON.stringify(tweets));
 }
+//mention  a user
+
+function startWithAt(newTweet){
+  console.log(newTweet)
+  const words = newTweet.split(' ')
+  console.log(words)
+
+   const go = words.map((word, idx)=>{
+    // console.log(word)
+    return word.charAt(0) === '@' ?  `<a href="phuong-profile.html" style="color:">${word}</a>` : word
+  }).join(' ')
+  console.log(go)
+
+  return go
+}
 
 function addTweet() {
   newTweet = createTwitterObject();
   tweets.unshift(newTweet);
   // console.log("", newTweet);
-  renderTweets(tweets);
+  // startWithAt(newTweet.body)
+  renderTweets(tweets)
   document.getElementById("userInput").focus();
   document.getElementById("userInput").value = "";
   storeTweetsToLocalStorage(tweets);
@@ -131,6 +179,7 @@ function renderTweets(tweets) {
 }
 
 function createtweetHtml(el, idx) {
+  // console.log('fire function', startWithAt(el.body))
   return ` <div class="post-bar">
 <div class="post_topbar">
   <div class="usy-dt">
