@@ -12,7 +12,7 @@ input.addEventListener("keyup", function(event) {
 // const tweets = [
 //   {
 //     body: "This is Thien  post signed in!",
-//     likeCount: 0,
+//     likeCount: 1,
 //    reTweets: [],
 //     createdAt: "2019-08-01T04:02:07.096Z",
 //     userName: "datloiboi@gmail.com"
@@ -36,6 +36,7 @@ input.addEventListener("keyup", function(event) {
 let tweets = JSON.parse(localStorage.getItem("tweets")) || [];
 // console.log("line37", tweets);
 let currentUser = "CoderSchool";
+let isLogin = true;
 
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
@@ -55,15 +56,17 @@ function makeId(length) {
 }
 
 function createTwitterObject() {
+  let id = makeId(6);
   return {
     body: document.getElementById("userInput").value,
     likeCount: 0,
+    like: false,
     retweetCount: 0,
     createdAt: new Date(),
     userName: currentUser,
     isRetweet: false,
-    originalTweetId: null,
-    tweetId: makeId(6)
+    tweetId: id,
+    originalTweetId: id
   };
 }
 
@@ -105,22 +108,24 @@ function addRetweet(idx) {
   storeTweetsToLocalStorage(tweets);
 }
 
-function removeRetweetWhenOriginalTweetDeleted(originalTweetId) {
-  tweets.map((el, idx) => {
-    if (el.originalTweetId === originalTweetId) {
-      console.log(`tweetID-110-, ${el.tweetId} Idx:${idx}`);
-      tweets.splice(idx, 1);
-    }
+function removeTweetAndItsRetweet(originalTweetId) {
+  return tweets.filter(tweet => {
+    return tweet.originalTweetId !== originalTweetId;
   });
+  // tweets.map((el, idx) => {
+  //   if (el.originalTweetId === originalTweetId) {
+  //     console.log(`tweetID-110-, ${el.tweetId} Idx:${idx}`);
+  //     tweets.splice(idx, 1);
+  //   }
+  // });
 }
 
 function removeTweet(idx) {
   console.log("user delete tweets number", idx);
   let originalTweetId = tweets[idx].tweetId;
-  console.log(`originalTweetId ${originalTweetId}`);
-  removeRetweetWhenOriginalTweetDeleted(originalTweetId);
-  tweets.splice(idx, 1);
-  removeRetweetWhenOriginalTweetDeleted(originalTweetId);
+  tweets = removeTweetAndItsRetweet(originalTweetId);
+  console.log(`TweetId ${originalTweetId}`);
+
   renderTweets(tweets);
   storeTweetsToLocalStorage(tweets);
 }
@@ -179,7 +184,11 @@ function createtweetHtml(el, idx) {
 <div class="job-status-bar">
   <ul class="like-com">
     <li>
-      <a href="#"><i onclick="myFunction(this)" class="fa fa-heart"></i>
+      <a href="#" onclick="countLike(${idx})">${
+    el.likeCount > 0
+      ? "<i class='fa fa-heart' style='color:#e44d3a' > Like</i>"
+      : "<i class='fa fa-heart-o'> Unlike</i>"
+  }</i>
       </a>
       <img src="images/liked-img.png" alt="">
       <span>${el.likeCount}</span>
@@ -193,13 +202,16 @@ function createtweetHtml(el, idx) {
 </div> `;
 }
 
-function myFunction(x) {
-  x.classList.toggle("fa-heart-o");
-  // var z = document.getElementById("likeToggle");
-  // if (z.innerHTML === "Like") {
-  //   zx.innerHTML = "Unlike";
-  // } else {
-  //   z.innerHTML = "Like";
+function countLike(idx) {
+  tweets[idx].like = !tweets[idx].like;
+  if (tweets[idx].like === false) {
+    tweets[idx].likeCount = 1;
+    // tweets[idx].like === true
+  } else {
+    tweets[idx].likeCount = 0;
+  }
+  // toggleHeart(onclick());
+  renderTweets(tweets);
 }
 
 function retweetClick(idx) {
