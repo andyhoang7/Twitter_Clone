@@ -27,9 +27,10 @@ K P H T
 - [x]/ Add favicon to the page
 
 <!-- Ms. Phuong -->
-* [x] The user should see a "count" that displays how many more characters the user has remaining, counting down from 140.
-* [x] Upon tweeting, the characters remaining text should reset back to 140, and the field should be cleared.
-* [x] The application should disallow text of greater than 140 characters.
+
+- [x] The user should see a "count" that displays how many more characters the user has remaining, counting down from 140.
+- [x] Upon tweeting, the characters remaining text should reset back to 140, and the field should be cleared.
+- [x] The application should disallow text of greater than 140 characters.
 
 <!-- Mr. Thien -->
 
@@ -47,7 +48,7 @@ K P H T
 
 - [x] The user should be able to "Retweet". Clicking Retweet immediately inserts a copy of that tweet below the original tweet.
 - [x]/ When the user deletes a tweet, all retweets should be deleted.
-- []/ The user should be able to see the number the tweet has been retweeted.
+- [x]/ The user should be able to see the number the tweet has been retweeted.
 - []/ The number of retweet should decresed when a retweet is deleted.
 
 The following **optional** features are implemented:
