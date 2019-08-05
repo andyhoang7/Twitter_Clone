@@ -3,7 +3,7 @@ var count = 5;
 
 // SIGN-UP-Start-->>
 let users = JSON.parse(localStorage.getItem("users")) || [];
-console.log("USERS",users);
+
 
 
 function createuserObject() {
