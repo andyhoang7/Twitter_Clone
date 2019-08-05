@@ -14,36 +14,35 @@ function validURL(str) {
   return !!pattern.test(str);
 }
 
+var input = document.getElementById("userInput");
+input.addEventListener("keyup", e => {
+  let words = e.target.value
+  words = words.split(' ')
+  words.map(word => {
+    if (validURL(word)) {
+      document.getElementById('preview').innerHTML = `<image src="${word}" style="height: 100px; width: 100px"></image>`
+    } else {
+      document.getElementById('preview').innerHTML = ''
+    }
+  })
+  e.key === "Enter" && addTweet()
+  
+});
+
+
+
+
 // var input = document.getElementById("userInput");
-// input.addEventListener("keyup", e => {
-//   let words = e.target.value
-//   words = words.split(' ')
-//   words.map(word => {
-//     if (validURL(word)) {
-//       document.getElementById('preview').innerHTML = `<image src="${word}" style="height: 100px; width: 100px"></image>`
-//     } else {
-//       document.getElementById('preview').innerHTML = ''
-//     }
-//   })
-//   e.key === "Enter" && addTodo()
-// });
+// input.addEventListener("keyup", function(event) {
 //   if (event.keyCode === 13) {
 //     addTweet();
 //   }
 // });
 
-
-var input = document.getElementById("userInput");
-input.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-    addTweet();
-  }
-});
-
 // const tweets = [
 //   {
 //     body: "This is Thien  post signed in!",
-//     likeCount: 0,
+//     likeCount: 1,
 //    reTweets: [],
 //     createdAt: "2019-08-01T04:02:07.096Z",
 //     userName: "datloiboi@gmail.com"
@@ -67,6 +66,7 @@ input.addEventListener("keyup", function(event) {
 let tweets = JSON.parse(localStorage.getItem("tweets")) || [];
 // console.log("line37", tweets);
 let currentUser = "CoderSchool";
+let isLogin = true;
 
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
@@ -87,21 +87,25 @@ function makeId(length) {
 
 function createTwitterObject() {
   const input = document.getElementById("userInput").value
+  let id = makeId(6);
   return {
     body: startWithAt(input),
     likeCount: 0,
+    like: false,
     retweetCount: 0,
     createdAt: new Date(),
     userName: currentUser,
     isRetweet: false,
-    originalTweetId: null,
-    tweetId: makeId(6)
+    tweetId: id,
+    originalTweetId: id
   };
 }
 
 function storeTweetsToLocalStorage(tweets) {
   localStorage.setItem("tweets", JSON.stringify(tweets));
 }
+
+
 //mention  a user
 
 function startWithAt(newTweet){
@@ -144,29 +148,33 @@ function addRetweet(idx) {
   newTweet.body = createRetweetbodyHtml(tweets[idx]);
   newTweet.isRetweet = true;
   newTweet.originalTweetId = tweets[idx].tweetId;
-  tweets.unshift(newTweet);
+  // tweets.unshift(newTweet);
+  tweets.splice(idx + 1, 0, newTweet);
   console.log("newTweet from AddRetwee 80", newTweet);
   renderTweets(tweets);
-  document.getElementById("userInput").focus();
+  // document.getElementById("userInput").focus();
   document.getElementById("userInput").value = "";
   storeTweetsToLocalStorage(tweets);
 }
 
-function removeRetweetWhenOriginalTweetDeleted(originalTweetId) {
-  tweets.map((el, idx) => {
-    if (el.originalTweetId === originalTweetId) {
-      console.log(`tweetID-110-, ${el.tweetId} Idx:${idx}`);
-      tweets.splice(idx, 1);
-    }
+function removeTweetAndItsRetweet(originalTweetId) {
+  return tweets.filter(tweet => {
+    return tweet.originalTweetId !== originalTweetId;
   });
+  // tweets.map((el, idx) => {
+  //   if (el.originalTweetId === originalTweetId) {
+  //     console.log(`tweetID-110-, ${el.tweetId} Idx:${idx}`);
+  //     tweets.splice(idx, 1);
+  //   }
+  // });
 }
 
 function removeTweet(idx) {
   console.log("user delete tweets number", idx);
   let originalTweetId = tweets[idx].tweetId;
-  console.log(`originalTweetId ${originalTweetId}`);
-  tweets.splice(idx, 1);
-  removeRetweetWhenOriginalTweetDeleted(originalTweetId);
+  tweets = removeTweetAndItsRetweet(originalTweetId);
+  console.log(`TweetId ${originalTweetId}`);
+
   renderTweets(tweets);
   storeTweetsToLocalStorage(tweets);
 }
@@ -176,6 +184,7 @@ function renderTweets(tweets) {
     return createtweetHtml(el, idx);
   });
   document.getElementById("tweetList").innerHTML = liHtmls.join("");
+  document.getElementById('preview').innerHTML = ''
 }
 
 function createtweetHtml(el, idx) {
@@ -226,7 +235,11 @@ function createtweetHtml(el, idx) {
 <div class="job-status-bar">
   <ul class="like-com">
     <li>
-      <a href="#"><i onclick="myFunction(this)" class="fa fa-heart"></i>
+      <a href="#" onclick="countLike(${idx})">${
+    el.likeCount > 0
+      ? "<i class='fa fa-heart' style='color:#e44d3a' > Like</i>"
+      : "<i class='fa fa-heart-o'> Unlike</i>"
+  }</i>
       </a>
       <img src="images/liked-img.png" alt="">
       <span>${el.likeCount}</span>
@@ -240,15 +253,17 @@ function createtweetHtml(el, idx) {
 </div> `;
 }
 
-function myFunction(x) {
-  x.classList.toggle("fa-heart-o");
-  // var z = document.getElementById("likeToggle");
-  // if (z.innerHTML === "Like") {
-  //   zx.innerHTML = "Unlike";
-  // } else {
-  //   z.innerHTML = "Like";
+function countLike(idx) {
+  tweets[idx].like = !tweets[idx].like;
+  if (tweets[idx].like === false) {
+    tweets[idx].likeCount = 1;
+    // tweets[idx].like === true
+  } else {
+    tweets[idx].likeCount = 0;
   }
-
+  // toggleHeart(onclick());
+  renderTweets(tweets);
+}
 
 function retweetClick(idx) {
   console.log(`line-147 Tweet[idx]]: ${idx}`);
@@ -363,7 +378,12 @@ function retweetAtweetHtmlTemplate(el, idx) {
 renderTweets(tweets);
 
 //count character
-document.getElementById('userInput').onkeyup = function () {
-  document.getElementById('count').innerHTML = "Characters left: " + (140 - this.value.length);
+document.getElementById("userInput").onkeyup = function() {
+  document.getElementById("count").innerHTML =
+    "Characters left: " + (140 - this.value.length);
 };
 
+
+
+
+addTweet();
