@@ -1176,11 +1176,11 @@ main {
 
 /* ============== job_descp ============ */
 
-.job_descp {
+/* .job_descp {
 	float: left;
 	width: 100%;
 	padding: 0 20px 20px 20px;
-	border-bottom: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5; */
 }
 .job_descp h3 {
 	color: #000000;
@@ -1216,7 +1216,7 @@ main {
 	font-size: 16px;
 	font-weight: 600;
 }
-.job_descp > p {
+/* .job_descp > p {
 	color: #686868;
 	font-size: 14px;
 	line-height: 24px;
@@ -1225,7 +1225,7 @@ main {
 .job_descp > p a {
 	color: #e44d3a;
 	font-weight: 600;
-}
+} */
 
 /* ============= skill-tags =========== */
 
