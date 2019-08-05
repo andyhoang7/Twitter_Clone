@@ -41,15 +41,15 @@ K P H T
 
 - [x] sign up/sign in/ sign out options
 - [] Static About Us Web Page
-  <!-- * [] Each tweet has an optional hashtag. The hashtag should be linked with an anchor tag.
+  <!-- * [] Each tweet has an optional hashtag. The hashtag should be linked with an anchor tag.-->
 - []/ The user can click on a hashtag, and only other tweets with that hashtag are shown. -->
 
 <!-- Mr. Khuong -->
 
 - [x] The user should be able to "Retweet". Clicking Retweet immediately inserts a copy of that tweet below the original tweet.
-- [x]/ When the user deletes a tweet, all retweets should be deleted.
-- [x]/ The user should be able to see the number the tweet has been retweeted.
-- []/ The number of retweet should decresed when a retweet is deleted.
+- [x] When the user deletes a tweet, all retweets should be deleted.
+- [x] The user should be able to see the number the tweet has been retweeted.
+- [x] The number of retweet should decresed when a retweet is deleted.
 
 The following **optional** features are implemented:
 

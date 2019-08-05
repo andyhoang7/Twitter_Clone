@@ -140,6 +140,7 @@ function createRetweetObject(tweet) {
     // retweets: [],
     createdAt: tweet.createdAt,
     likeCount: tweet.likeCount,
+    tweetId: tweet.tweetId,
     userName: tweet.userName
   };
 }
@@ -150,7 +151,7 @@ function addRetweet(idx) {
   newTweet.originalTweetId = tweets[idx].tweetId;
   // tweets.unshift(newTweet);
   tweets.splice(idx + 1, 0, newTweet);
-  console.log("newTweet from AddRetwee 80", newTweet);
+  console.log("newTweet from AddRetweet() 104", newTweet);
   renderTweets(tweets);
   // document.getElementById("userInput").focus();
   document.getElementById("userInput").value = "";
@@ -171,12 +172,26 @@ function removeTweetAndItsRetweet(originalTweetId) {
 
 function removeTweet(idx) {
   console.log("user delete tweets number", idx);
-  let originalTweetId = tweets[idx].tweetId;
-  tweets = removeTweetAndItsRetweet(originalTweetId);
-  console.log(`TweetId ${originalTweetId}`);
+  let tweet = tweets[idx];
+  if (tweet.isRetweet) {
+    decreaseRetweetCount(tweet.originalTweetId);
+    tweets.splice(idx, 1);
+  } else {
+    tweets = removeTweetAndItsRetweet(tweet.tweetId);
+    console.log(`and all its retweets`);
+  }
 
   renderTweets(tweets);
   storeTweetsToLocalStorage(tweets);
+}
+
+function decreaseRetweetCount(originalTweetId) {
+  tweets.map(el => {
+    if (el.tweetId === originalTweetId) {
+      console.log(`found original tweets`);
+      el.retweetCount -= 1;
+    }
+  });
 }
 
 function renderTweets(tweets) {
@@ -188,8 +203,12 @@ function renderTweets(tweets) {
 }
 
 function createtweetHtml(el, idx) {
+<<<<<<< HEAD
+  return ` <div id="${el.tweetId}" class="post-bar">
+=======
   // console.log('fire function', startWithAt(el.body))
   return ` <div class="post-bar">
+>>>>>>> 89676b9e44271f9159323d21c8af23f0ab29bc81
 <div class="post_topbar">
   <div class="usy-dt">
     <img src="images/resources/us-pic.png" alt="">
@@ -293,16 +312,15 @@ function createRetweetbodyHtml(tweet) {
       <li><a href="#" title="">Unbid</a></li>
       <li><a href="#" title="">Close</a></li>
       <li><a href="#" title="">Hide</a></li>
-      <li><a href="#" title="" onclick="goToOriginalTweet(${
-        el.tweetId
-      })">Go To Tweet</a></li>
     </ul>
   </div>
 </div>
 <div class="job_descp">
   <p>${el.body}</p>
   <ul class="skill-tags">
-    <li><a href="#" title="">More</a></li>	
+  <li><a href="#" title="" onclick="goToOriginalTweet(${
+    el.tweetId
+  })">More</a></li>	
   </ul>
 </div>
 </div> 
